@@ -6,7 +6,7 @@ const passport = require('passport');
 const localStrategy = require("passport-local");
 const users = require('./users');
 passport.use(new localStrategy(userModel.authenticate()))
-
+const uploads = require('./multer')
 
 
 // Home page route
@@ -23,14 +23,19 @@ router.get('/login', function (req, res) {
 router.get('/forgotpassword', function (req, res) {
   res.render('changepassword', { title: "Pintrest" })
 });
- 
+
 // profile route
 router.get('/profile', isLoggedIn, async function (req, res, next) {
-  const user = userModel.findOne({
-    username : req.session.passport.user
-  })
-  res.render('profile', { title: "Pintrest" }, {user: user})
+  try {
+    const user = await userModel.findOne({
+      username: req.session.passport.user
+    });
+    res.render('profile', { title: "Pinterest", user: user });
+  } catch (error) {
+    next(error);
+  }
 });
+
 // feed route
 router.get('/profile', isLoggedIn, function (req, res, next) {
   res.render('feed', { title: "Pintrest" })
