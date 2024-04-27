@@ -1,23 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./stylesheets/profile.css">
     <title>Document</title>
   </head>
+
   <body>
     <div id="algn">
       <div id="card">
         <div id="upper-bg">
           <img
             src="https://i.pinimg.com/originals/d3/d1/75/d3d175e560ae133f1ed5cd4ec173751a.png"
-            alt="profile-pic" class="profile-pic">
+            alt="profile-pic"
+            class="profile-pic">
         </div>
         <div id="lower-bg">
           <div class="text">
-            <p class="name"> <%= user?.fullname %></p>
-            <p class="name"> <%= user?.username%> </p>
+            <p class="name">
+              <%= user?.fullname %>
+            </p>
+            <p class="name">
+              <%= user?.username%>
+            </p>
             <p class="title">Web developer & <br> Competitive programmer</p>
           </div>
           <div id="icons">
@@ -41,15 +48,59 @@
             </a>
           </div>
           <div id="btn">
+            <a class="trigger">Make a Post</a>
             <a class="msg" href="/logout">Logout</a>
-            <!-- <button class="msg">Message</button> -->
           </div>
-          <form action="/upload" method="post" enctype="multipart/form-data">
-            <input type="file" name="file">
-            <input type="submit" value="upload"/>
-          </form>
         </div>
       </div>
     </div>
+    <!-- modal for make a new post  -->
+    <div class="modal">
+      <div class="modal-content">
+        <span class="close-button">×</span>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+          <input type="file" class="detail" name="file" />
+          <br />
+          <input type="text" placeholder="Enter some caption here."
+            class="detail" name="imageText" />
+          <button type="submit" class="int">upload</button>
+        </form>
+      </div>
+    </div>
+    <!-- for show all  posts -->
+    <div class="container">
+      <div class="cards">
+        <% user.posts.forEach(function(post){ %>
+        <div class="card">
+            <img class="img" src="images/uploads/<%= post.Image %>"
+              alt="<%= post.imageText %>">
+          <p class="caption">
+            <%= post.imageText %>
+          </p>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+
+    <script>
+    var modal = document.querySelector(".modal");
+    var trigger = document.querySelector(".trigger");
+    var closeButton = document.querySelector(".close-button");
+
+    function toggleModal() {
+      modal.classList.toggle("show-modal");
+    }
+
+    function windowOnClick(event) {
+      if (event.target === modal) {
+        toggleModal();
+      }
+    }
+
+    trigger.addEventListener("click", toggleModal);
+    closeButton.addEventListener("click", toggleModal);
+    window.addEventListener("click", windowOnClick);
+  </script>
   </body>
+
 </html>

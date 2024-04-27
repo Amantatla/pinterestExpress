@@ -1,18 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
-body{
+
+body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
 }
-#algn{
-    height: 92vh;
+
+#algn {
     min-height: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#card{
+#card {
     width: 370px;
     height: 435px;
     border: none;
@@ -21,7 +22,7 @@ body{
     box-shadow: 0 4px 8px 0 #E7E9EB, 0 6px 20px 0 #E7E9EB;
 }
 
-#upper-bg{
+#upper-bg {
     width: 100%;
     height: 35%;
     background-color: #f30d19;
@@ -30,7 +31,7 @@ body{
     position: relative;
 }
 
-.profile-pic{
+.profile-pic {
     width: 35%;
     background-color: white;
     border: 3px solid #f30d19;
@@ -40,53 +41,53 @@ body{
     top: 40px;
 }
 
-#lower-bg{
+#lower-bg {
     width: 100%;
     height: 65%;
 }
 
-.text{
+.text {
     text-align: center;
     padding-top: 35px;
 }
 
-.text .name{
+.text .name {
     font-weight: 600;
     font-size: large;
     padding: 0;
     margin: 5px;
 }
 
-.text .title{
+.text .title {
     padding: 0;
     margin: 0;
     font-size: 15px;
 }
 
-#icons{
+#icons {
     display: flex;
     justify-content: center;
     margin: 15px;
 }
 
-#icons img{
+#icons img {
     width: 80%;
     height: 90%;
 }
 
-.ico{
+.ico {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#btn{
+#btn {
     display: flex;
     justify-content: center;
     margin: 15px;
 }
 
-#btn a{
+#btn a {
     margin: 0 20px;
     padding: 10px 15px;
     background-color: #f30d19;
@@ -95,31 +96,127 @@ body{
     border-radius: 50px;
     font-weight: 700;
     text-decoration: none;
+    cursor: pointer;
 }
 
-#btn a:hover{
+#btn a:hover {
     box-shadow: 0 4px 8px 0 #E7E9EB, 0 6px 20px 0 #E7E9EB;
 }
 
-#l-c-s{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    margin: 20px 10px;
+/* modal */
+
+.modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.1);
+    transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+    z-index: 1000;
 }
 
-#l-c-s .num{
-    display: flex;
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 1rem 1.5rem;
+    width: 25rem;
+    border-radius: 0.5rem;
 }
 
-#l-c-s .dvr{
-    width: 2px;
+.close-button {
+    float: right;
+    width: 1.5rem;
+    line-height: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    background-color: #f30d19;
+    color: white;
+}
+
+.close-button:hover {
+    background-color: #df0812;
+}
+.modal-content form {
+    width: 90%;
+    padding: 20px 0px;
+}
+.detail {
+    width: 100%;
     height: 25px;
-    background-color: gray;
+    margin: 5px;
+    padding: 13px 10px;
+    font-size: 15px;
+    color: gray;
+    border: 2px solid rgb(218, 214, 214);
+    border-radius: 15px;
 }
 
-#l-c-s img{
-    width: 24px;
-    height: 24px;
+[type="file"]::-webkit-file-upload-button {
+    background-color: #f30d19;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 8px !important;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+.int {
+    display: flex;
+    justify-content: center;
+    margin: 15px;
+}
+
+ .int {
+    margin: 0 45%;
+    padding: 12px 15px;
+    background-color: #f30d19;
+    color: white !important;
+    border: none;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.show-modal {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1.0);
+    transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+
+/* profile posts  */
+
+.container{
+    width: 1280px ;
+    margin: 0px auto;
+    position: relative;
+}
+.cards{
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0px 20px;
+    position: absolute;
+
+}
+.card{
+    height: fit-content;
+    position: relative;
+}
+.img{
+    width: 100%;
+    border-radius: 20px;
+    object-fit:cover;
+}
+.caption{
+    margin-top: 0px;
+    font-weight: 500;
 }

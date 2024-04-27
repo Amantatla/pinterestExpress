@@ -29,7 +29,7 @@ router.get('/profile', isLoggedIn, async function (req, res, next) {
   try {
     const user = await userModel.findOne({
       username: req.session.passport.user
-    });
+    }).populate('posts')
     res.render('profile', { title: "Pinterest", user: user });
   } catch (error) {
     next(error);
@@ -37,7 +37,7 @@ router.get('/profile', isLoggedIn, async function (req, res, next) {
 });
 
 // feed route
-router.get('/profile', isLoggedIn, function (req, res, next) {
+router.get('/feed', isLoggedIn, function (req, res, next) {
   res.render('feed', { title: "Pintrest" })
 });
 
@@ -82,6 +82,25 @@ function isLoggedIn(req, res, next) {
   }
   res.redirect('/')
 }
+
+// post upload with multer
+
+router.post('/upload', isLoggedIn, uploads.single('file'), async (req, res, next) => {
+  if (!req.file) {
+    return res.status(400).send('No files were uploaded.')
+  }
+  // save uploaded file as post and giving post id to user and userid in post
+  const user = await userModel.findOne({ username: req.session.passport.user });
+  const post = await postModel.create({
+    Image: req.file.filename,
+    imageText: req.body.imageText,
+    user: user._id
+  });
+
+   user.posts.push(post._id);
+   await user.save();
+  res.redirect("/profile");
+})
 
 // Change password
 router.post('/changepassword', function (req, res) {
