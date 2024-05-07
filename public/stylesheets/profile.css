@@ -1,11 +1,159 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
-body {
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 1rem;
+  }
+  body {
+    background: #fff !important;
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-}
+  }
+  * a {
+    text-decoration: none;
+    color: #151515;
+  }
+  .pinterest {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    padding: 0.938rem;
+  }
+  .left {
+    display: flex;
+    align-items: center;
+    width: 20%;
+  }
+  .left .logo {
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .left .logo:hover {
+    background-color: #e5e5e5;
+  }
+  .left .logo i {
+    color: #e60022;
+    font-size: 24px;
+  }
+  .left .create {
+    font-weight: bold;
+    height: 3rem;
+    color: #151515;
+    padding: 1rem;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1.563rem;
+  }
+  .left .home {
+    font-weight: bold;
+    height: 3rem;
+    color: #fff;
+    padding: 1rem;
+    background-color: #151515;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1.563rem;
+  }
+  .avatar {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .avatar .img {
+    height: 2rem;
+    width: 2rem;
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  .avatar .img img {
+    position: absolute;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+  .search {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+    border-radius: 25px;
+    overflow: hidden;
+    background: #e3e3e3;
+  }
+  .search:hover {
+    background: #c9c9c9;
+  }
+  .search i {
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #767676;
+  }
+  .search input {
+    width: 100%;
+    border: none;
+    background: none;
+    outline: none;
+    padding-right: 1rem;
+  }
+  .search input::placeholder {
+    color: #767676;
+    font-size: 1rem;
+  }
+  .right {
+    width: 20%;
+    display: flex;
+    align-items: center;
+  }
+  .items {
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .items:hover {
+    background: #e5e5e5;
+  }
+  .items i {
+    font-size: 1rem;
+    color: #767676;
+  }
+  .items-down {
+    border-radius: 50%;
+    width: 1rem;
+    height: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.7rem;
+  }
+  .items-down:hover {
+    background: #e5e5e5;
+  }
+   
 
+/* profile  */
 #algn {
     min-height: 500px;
     display: flex;
@@ -144,10 +292,12 @@ body {
 .close-button:hover {
     background-color: #df0812;
 }
+
 .modal-content form {
     width: 90%;
     padding: 20px 0px;
 }
+
 .detail {
     width: 100%;
     height: 25px;
@@ -168,13 +318,14 @@ body {
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
 }
+
 .int {
     display: flex;
     justify-content: center;
     margin: 15px;
 }
 
- .int {
+.int {
     margin: 0 45%;
     padding: 12px 15px;
     background-color: #f30d19;
@@ -195,28 +346,32 @@ body {
 
 /* profile posts  */
 
-.container{
-    width: 1280px ;
+.container {
+    width: 1280px;
     margin: 0px auto;
     position: relative;
 }
-.cards{
+
+.cards {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 0px 20px;
     position: absolute;
 
 }
-.card{
+
+.card {
     height: fit-content;
     position: relative;
 }
-.img{
+
+.img {
     width: 100%;
     border-radius: 20px;
-    object-fit:cover;
+    object-fit: cover;
 }
-.caption{
+
+.caption {
     margin-top: 0px;
     font-weight: 500;
 }

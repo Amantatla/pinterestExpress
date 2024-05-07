@@ -10,7 +10,7 @@ const uploads = require('./multer')
 
 
 // Home page route
-router.get('/', function (req, res) {
+router.get('/register', function (req, res) {
   res.render('index', { title: "Pintrest" })
 });
 
@@ -37,9 +37,22 @@ router.get('/profile', isLoggedIn, async function (req, res, next) {
 });
 
 // feed route
-router.get('/feed', isLoggedIn, function (req, res, next) {
-  res.render('feed', { title: "Pintrest" })
+// router.get('/feed', isLoggedIn, function (req, res, next) {
+//   res.render('feed', { title: "Pintrest" })
+// });
+// Express route handler for the main page
+router.get('/', isLoggedIn, async (req, res) => {
+  try {
+      const posts = await postModel.find().sort({ createdAt: -1 }).limit(100).populate('user').exec();
+
+      res.render('feed', {title: "Pintrest", posts });
+  } catch (err) {
+      // Handle errors
+      console.error(err);
+      res.status(500).send('Server Error');
+  }
 });
+
 
 // authentication Code
 
@@ -62,7 +75,7 @@ router.post('/register', async (req, res) => {
 
 // login
 router.post('/login', passport.authenticate("local", {
-  successRedirect: '/profile',
+  successRedirect: '/',
   failureRedirect: '/login',
   failureFlash: true
 }), (req, res) => { })
@@ -80,7 +93,7 @@ function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
-  res.redirect('/')
+  res.redirect('/register')
 }
 
 // post upload with multer
