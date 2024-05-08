@@ -41,17 +41,45 @@ router.get('/profile', isLoggedIn, async function (req, res, next) {
 //   res.render('feed', { title: "Pintrest" })
 // });
 // Express route handler for the main page
+// router.get('/', isLoggedIn, async (req, res) => {
+//   try {
+//       const posts = await postModel.find().sort({ createdAt: -1 }).limit(100).populate('user').exec();
+
+//       res.render('feed', {title: "Pintrest", posts });
+//   } catch (err) {
+//       // Handle errors
+//       console.error(err);
+//       res.status(500).send('Server Error');
+//   }
+// });
+
 router.get('/', isLoggedIn, async (req, res) => {
   try {
-      const posts = await postModel.find().sort({ createdAt: -1 }).limit(100).populate('user').exec();
+    let query = {}; 
+    const searchTerm = req.query.searchTerm?.trim();
+    console.log(searchTerm)
 
-      res.render('feed', {title: "Pintrest", posts });
+    if (searchTerm) {
+      query = { imageText: { $regex: searchTerm, $options: 'i' } };
+      console.log(query)
+    }
+
+    // Fetch posts based on the constructed query
+    const posts = await postModel.find(query)
+      .sort({ createdAt: -1 })
+      .limit(100)
+      .populate('user')
+      .exec();
+
+    // Render the feed page with the fetched posts
+    res.render('feed', { title: "Pinterest", posts });
   } catch (err) {
-      // Handle errors
-      console.error(err);
-      res.status(500).send('Server Error');
+    // Handle any errors that occur during the process
+    console.error(err);
+    res.status(500).send('Server Error');
   }
 });
+
 
 
 // authentication Code
@@ -93,7 +121,7 @@ function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
-  res.redirect('/register')
+  res.redirect('/login')
 }
 
 // post upload with multer
