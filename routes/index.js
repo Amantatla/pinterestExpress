@@ -24,6 +24,11 @@ router.get('/forgotpassword', function (req, res) {
   res.render('changepassword', { title: "Pintrest" })
 });
 
+// create page route
+router.get('/create', isLoggedIn, function (req, res) {
+  res.render('create', { title: "Pintrest" })
+});
+
 // profile route
 router.get('/profile', isLoggedIn, async function (req, res, next) {
   try {
@@ -36,32 +41,13 @@ router.get('/profile', isLoggedIn, async function (req, res, next) {
   }
 });
 
-// feed route
-// router.get('/feed', isLoggedIn, function (req, res, next) {
-//   res.render('feed', { title: "Pintrest" })
-// });
-// Express route handler for the main page
-// router.get('/', isLoggedIn, async (req, res) => {
-//   try {
-//       const posts = await postModel.find().sort({ createdAt: -1 }).limit(100).populate('user').exec();
-
-//       res.render('feed', {title: "Pintrest", posts });
-//   } catch (err) {
-//       // Handle errors
-//       console.error(err);
-//       res.status(500).send('Server Error');
-//   }
-// });
-
 router.get('/', isLoggedIn, async (req, res) => {
   try {
-    let query = {}; 
+    let query = {};
     const searchTerm = req.query.searchTerm?.trim();
-    console.log(searchTerm)
 
     if (searchTerm) {
       query = { imageText: { $regex: searchTerm, $options: 'i' } };
-      console.log(query)
     }
 
     // Fetch posts based on the constructed query
@@ -71,10 +57,8 @@ router.get('/', isLoggedIn, async (req, res) => {
       .populate('user')
       .exec();
 
-    // Render the feed page with the fetched posts
     res.render('feed', { title: "Pinterest", posts });
   } catch (err) {
-    // Handle any errors that occur during the process
     console.error(err);
     res.status(500).send('Server Error');
   }
@@ -138,8 +122,8 @@ router.post('/upload', isLoggedIn, uploads.single('file'), async (req, res, next
     user: user._id
   });
 
-   user.posts.push(post._id);
-   await user.save();
+  user.posts.push(post._id);
+  await user.save();
   res.redirect("/profile");
 })
 

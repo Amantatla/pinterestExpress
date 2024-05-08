@@ -19,7 +19,7 @@
       <div class="left">
         <a href="#" class="logo"><i class="fab fa-pinterest"></i></a>
         <a href="/" class="home">Home</a>
-        <a href="#" class="create">Create</a>
+        <a href="create" class="create">Create</a>
       </div>
       <div class="search">
         <i class="fas fa-search"></i>
@@ -79,30 +79,18 @@
             </a>
           </div>
           <div id="btn">
-            <a class="trigger">Make new Pin</a>
+            <a href="create" class="trigger">Make new Pin</a>
             <a class="msg" href="/logout">Logout</a>
           </div>
         </div>
       </div>
     </div>
-    <!-- modal for make a new post  -->
-    <div class="modal">
-      <div class="modal-content">
-        <span class="close-button">×</span>
-        <form action="/upload" method="post" enctype="multipart/form-data">
-          <input type="file" class="detail" name="file" />
-          <br />
-          <input type="text" placeholder="Enter some caption here."
-            class="detail" name="imageText" />
-          <button type="submit" class="int">upload</button>
-        </form>
-      </div>
-    </div>
+   
     <!-- for show all  posts -->
     <div class="container">
       <div class="cards">
         <% user.posts.forEach(function(post){ %>
-        <div class="card">
+        <div class="post">
           <img class="img" src="images/uploads/<%= post.Image %>"
             alt="<%= post.imageText %>">
           <p class="caption">
@@ -114,23 +102,6 @@
     </div>
 
     <script>
-    var modal = document.querySelector(".modal");
-    var trigger = document.querySelector(".trigger");
-    var closeButton = document.querySelector(".close-button");
-
-    function toggleModal() {
-      modal.classList.toggle("show-modal");
-    }
-
-    function windowOnClick(event) {
-      if (event.target === modal) {
-        toggleModal();
-      }
-    }
-
-    trigger.addEventListener("click", toggleModal);
-    closeButton.addEventListener("click", toggleModal);
-    window.addEventListener("click", windowOnClick);
   </script>
   </body>
 

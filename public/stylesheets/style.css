@@ -5,12 +5,14 @@
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
 }
+
 body {
   background-color: #dadada;
   min-width: 100%;
   min-height: 100%;
- 
+
 }
+
 .container {
   background-color: white;
   position: absolute;
@@ -21,18 +23,20 @@ body {
   transform: translate(-50%, -50%);
   /* box-shadow: 2px 2px 3px -1px rgba(0, 0, 0, 0.5); */
 }
+
 .content {
   /* width: 56%; */
   padding: 0 10px;
   margin: auto;
   text-align: center;
 }
- 
-.img1{
+
+.img1 {
   width: 70px;
   position: relative;
   top: 20px;
 }
+
 .header {
   font-size: 32px;
   font-weight: 700;
@@ -40,6 +44,7 @@ body {
   margin-bottom: 10px;
   line-height: 46px;
 }
+
 .detail {
   width: 100%;
   height: 48px;
@@ -50,6 +55,7 @@ body {
   border: 2px solid rgb(218, 214, 214);
   border-radius: 15px;
 }
+
 /* .detail:focus {
   box-shadow: 0px -7px 3px -2px rgba(15, 91, 231, 0.4),
     0px 7px 3px -2px rgba(15, 91, 231, 0.4),
@@ -83,7 +89,8 @@ h4 {
   font-weight: 700;
   cursor: pointer;
 }
-.int:hover{
+
+.int:hover {
   background-color: #df0812;
 }
 
@@ -99,19 +106,23 @@ h4 {
   font-size: 16px;
   font-weight: 700;
 }
+
 .fbk a {
   text-decoration: none;
   color: white;
   text-align: center;
   letter-spacing: 1px;
 }
-.fbk:hover{
+
+.fbk:hover {
   background-color: rgb(8, 110, 206);
 }
-.ggl{
+
+.ggl {
   text-align: center;
   background-color: #ccc;
 }
+
 .ggl a {
   text-decoration: none;
   color: black;
@@ -119,7 +130,8 @@ h4 {
   font-size: 16px;
   letter-spacing: 1px;
 }
-.ggl:hover{
+
+.ggl:hover {
   background-color: #a0a0a0;
 }
 
@@ -127,16 +139,18 @@ footer p {
   font-size: 13px;
   margin: 10px;
 }
+
 p:last-child {
   opacity: 1;
 }
+
 hr {
   width: 50%;
   opacity: 0.4;
-  margin: 0px  0px  0px 25%;
+  margin: 0px 0px 0px 25%;
 }
 
-.error{
+.error {
   font-weight: 500;
   color: #f30d19;
   text-transform: capitalize;
